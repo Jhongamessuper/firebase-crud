@@ -17,13 +17,12 @@ import {
 // Your web app's Firebase configuration
 const firebaseConfig = {
   // Put you credentials here
-  apiKey: "AIzaSyAVfLCVmG6EBOr2z1AkYK2aI0jA8mO7n9w",
-    authDomain: "aula-2022.firebaseapp.com",
-    projectId: "aula-2022",
-    storageBucket: "aula-2022.appspot.com",
-    messagingSenderId: "369263924085",
-    appId: "1:369263924085:web:3bc65c13ae0fc1ef71793c",
-    measurementId: "G-SH6FM5PC89"
+  apiKey: "AIzaSyDYOwlXj4-RWXZ1lPiTAXPn4OO39Qg3ayk",
+    authDomain: "aulateste-10c84.firebaseapp.com",
+    projectId: "aulateste-10c84",
+    storageBucket: "aulateste-10c84.appspot.com",
+    messagingSenderId: "696280966119",
+    appId: "1:696280966119:web:c516f45ab3e089b9f99342"
 };
 
 // Initialize Firebase
@@ -34,10 +33,11 @@ export const db = getFirestore();
 /**
  * Save a New Task in Firestore
  * @param {string} title the title of the Task
+ * @param {string} game the game of the Task
  * @param {string} description the description of the Task
  */
-export const saveTask = (title, description) =>
-  addDoc(collection(db, "tasks"), { title, description });
+export const saveTask = (title, game, description) =>
+  addDoc(collection(db, "tasks"), { title, game, description });
 
 export const onGetTasks = (callback) =>
   onSnapshot(collection(db, "tasks"), callback);

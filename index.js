@@ -28,6 +28,7 @@ import {
         tasksContainer.innerHTML += `
         <div class="card card-body mt-2 border-primary">
       <h3 class="h5">${task.title}</h3>
+      <p>${task.game}</p>
       <p>${task.description}</p>
       <div>
         <button class="btn btn-primary btn-delete" data-id="${doc.id}">
@@ -58,6 +59,7 @@ import {
             const doc = await getTask(e.target.dataset.id);
             const task = doc.data();
             taskForm["task-title"].value = task.title;
+            taskForm["task-game"].value = task.game;
             taskForm["task-description"].value = task.description;
   
             editStatus = true;
@@ -75,14 +77,16 @@ import {
     e.preventDefault();
   
     const title = taskForm["task-title"];
+    const game = taskForm["task-game"];
     const description = taskForm["task-description"];
   
     try {
       if (!editStatus) {
-        await saveTask(title.value, description.value);
+        await saveTask(title.value, game.value, description.value);
       } else {
         await updateTask(id, {
           title: title.value,
+          game: game.value,
           description: description.value,
         });
   
